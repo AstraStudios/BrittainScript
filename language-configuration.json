@@ -1,0 +1,7 @@
+{
+    //exampleS
+    "fileExclusions": [
+        "**/*.bn"
+    ],
+    "file": "syntaxes/brittainscript."
+}
