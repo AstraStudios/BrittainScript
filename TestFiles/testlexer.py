@@ -4,11 +4,15 @@ import ply.lex as lex
 tokens = (
     'NUMBER',
     'PLUS',
-    'MINUS'
+    'MINUS',
+    'TIMES',
+    'DIVIDE'
 )
 
 t_PLUS = r'\+'
 t_MINUS = r'\-'
+t_TIMES = r'\*'
+t_DIVIDE = r'\/'
 
 def t_NUMBER(t):
     r'\d+'
