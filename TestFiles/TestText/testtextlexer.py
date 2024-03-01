@@ -3,16 +3,18 @@ import ply.lex as lex
 # testing out text
 
 tokens = (
-    'IDENTIFIER'
+    'TEXT',
 )
 
 #t_IF = r'if'
 #t_ELSE = r'else'
-t_IDENTIFIER = r'[a-zA-Z_][a-zA-Z0-0_]*'
+#t_IDENTIFIER = r'[a-zA-Z_][a-zA-Z0-0_]*'
 
-def t_newline(t):
-    r'\n+'
-    t.lexer.lineno += len(t.value)
+def t_TEXT(t): # old name newline
+    r'.+'
+    return t
+    #r'\n+'
+    #t.lexer.lineno += len(t.value)
 
 t_ignore = ' \t'
 

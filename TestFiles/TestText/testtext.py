@@ -1,18 +1,19 @@
 import testtextlexer
 import testtextparser
 
-def parse_text_input(input_text):
-    testtextlexer.lexer.input(input_text)
+lexer = testtextlexer.lexer
+
+def parse_input(input_text):
+    lexer.input(input_text)
     tokens = []
     while True:
-        tok = testtextlexer.lexer.token()
-        if not tok:
-            break
-        print(tok)
+        tok = lexer.token()
+        if not tok: break
         tokens.append(tok)
+        print(tok)
     result = testtextparser.parser.parse(input_text)
     return result
 
-input_text = input("Enter a string: ")
-result = parse_text_input(input_text)
-print(result)
+input_text = input("Enter some text: ")
+result = parse_input(input_text)
+print("Parsed: ", result)
