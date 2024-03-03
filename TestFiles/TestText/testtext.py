@@ -16,4 +16,4 @@ def parse_input(input_text):
 
 input_text = input("Enter some text: ")
 result = parse_input(input_text)
-print("Parsed: ", result)
+print("Parsed:", result)
