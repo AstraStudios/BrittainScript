@@ -37,7 +37,14 @@ def p_expression_times(p):
 
 def p_expression_squareroot(p):
     'expression : SQUAREROOT LPAREN expression RPAREN'
-    p[0] = math.sqrt(p[1])
+    arg = p[3]
+    if isinstance(arg, str):
+        try: arg = float(arg)
+        except ValueError:
+            print("Error: Invalid argument '{} for squareroot".format)
+            p[0] = None
+            return
+    p[0] = math.sqrt(arg)
 
 def p_expression_power(p):
     'expression : expression POWER LPAREN expression RPAREN'
