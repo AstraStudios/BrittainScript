@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'COSINE DIVIDE FUNC_CALL INVERSECOSINE INVERSESINE INVERSETANGENT LPAREN MINUS MULTIPLY NUMBER PI PLUS POWER RPAREN SINE SQUAREROOT TANGENTexpression : NUMBERexpression : expression PLUS expressionexpression : expression MINUS expressionexpression : expression DIVIDE expressionexpression : expression MULTIPLY expressionexpression : expression POWER LPAREN expression RPARENexpression : PIexpression : FUNC_CALL'
+_lr_signature = 'COSINE DIVIDE FUNC_CALL INVERSECOSINE INVERSESINE INVERSETANGENT LPAREN MINUS MULTIPLY NUMBER PI PLUS POWER RPAREN SINE SQUAREROOT TANGENTexpression : NUMBERexpression : expression PLUS expressionexpression : expression MINUS expressionexpression : expression DIVIDE expressionexpression : expression MULTIPLY expressionexpression : SQUAREROOT LPAREN expression RPARENexpression : expression POWER LPAREN expression RPARENexpression : SINE LPAREN expression RPARENexpression : COSINE LPAREN expression RPARENexpression : TANGENT LPAREN expression RPARENexpression : INVERSESINE LPAREN expression RPARENexpression : INVERSECOSINE LPAREN expression RPARENexpression : INVERSETANGENT LPAREN expression RPARENexpression : PIexpression : FUNC_CALL'
     
-_lr_action_items = {'NUMBER':([0,5,6,7,8,14,],[2,2,2,2,2,2,]),'PI':([0,5,6,7,8,14,],[3,3,3,3,3,3,]),'FUNC_CALL':([0,5,6,7,8,14,],[4,4,4,4,4,4,]),'$end':([1,2,3,4,10,11,12,13,16,],[0,-1,-7,-8,-2,-3,-4,-5,-6,]),'PLUS':([1,2,3,4,10,11,12,13,15,16,],[5,-1,-7,-8,5,5,5,5,5,-6,]),'MINUS':([1,2,3,4,10,11,12,13,15,16,],[6,-1,-7,-8,6,6,6,6,6,-6,]),'DIVIDE':([1,2,3,4,10,11,12,13,15,16,],[7,-1,-7,-8,7,7,7,7,7,-6,]),'MULTIPLY':([1,2,3,4,10,11,12,13,15,16,],[8,-1,-7,-8,8,8,8,8,8,-6,]),'POWER':([1,2,3,4,10,11,12,13,15,16,],[9,-1,-7,-8,9,9,9,9,9,-6,]),'RPAREN':([2,3,4,10,11,12,13,15,16,],[-1,-7,-8,-2,-3,-4,-5,16,-6,]),'LPAREN':([9,],[14,]),}
+_lr_action_items = {'NUMBER':([0,12,13,14,15,17,18,19,20,21,22,23,28,],[2,2,2,2,2,2,2,2,2,2,2,2,2,]),'SQUAREROOT':([0,12,13,14,15,17,18,19,20,21,22,23,28,],[3,3,3,3,3,3,3,3,3,3,3,3,3,]),'SINE':([0,12,13,14,15,17,18,19,20,21,22,23,28,],[4,4,4,4,4,4,4,4,4,4,4,4,4,]),'COSINE':([0,12,13,14,15,17,18,19,20,21,22,23,28,],[5,5,5,5,5,5,5,5,5,5,5,5,5,]),'TANGENT':([0,12,13,14,15,17,18,19,20,21,22,23,28,],[6,6,6,6,6,6,6,6,6,6,6,6,6,]),'INVERSESINE':([0,12,13,14,15,17,18,19,20,21,22,23,28,],[7,7,7,7,7,7,7,7,7,7,7,7,7,]),'INVERSECOSINE':([0,12,13,14,15,17,18,19,20,21,22,23,28,],[8,8,8,8,8,8,8,8,8,8,8,8,8,]),'INVERSETANGENT':([0,12,13,14,15,17,18,19,20,21,22,23,28,],[9,9,9,9,9,9,9,9,9,9,9,9,9,]),'PI':([0,12,13,14,15,17,18,19,20,21,22,23,28,],[10,10,10,10,10,10,10,10,10,10,10,10,10,]),'FUNC_CALL':([0,12,13,14,15,17,18,19,20,21,22,23,28,],[11,11,11,11,11,11,11,11,11,11,11,11,11,]),'$end':([1,2,10,11,24,25,26,27,37,38,39,40,41,42,43,44,],[0,-1,-14,-15,-2,-3,-4,-5,-6,-8,-9,-10,-11,-12,-13,-7,]),'PLUS':([1,2,10,11,24,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,],[12,-1,-14,-15,12,12,12,12,12,12,12,12,12,12,12,12,-6,-8,-9,-10,-11,-12,-13,-7,]),'MINUS':([1,2,10,11,24,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,],[13,-1,-14,-15,13,13,13,13,13,13,13,13,13,13,13,13,-6,-8,-9,-10,-11,-12,-13,-7,]),'DIVIDE':([1,2,10,11,24,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,],[14,-1,-14,-15,14,14,14,14,14,14,14,14,14,14,14,14,-6,-8,-9,-10,-11,-12,-13,-7,]),'MULTIPLY':([1,2,10,11,24,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,],[15,-1,-14,-15,15,15,15,15,15,15,15,15,15,15,15,15,-6,-8,-9,-10,-11,-12,-13,-7,]),'POWER':([1,2,10,11,24,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,],[16,-1,-14,-15,16,16,16,16,16,16,16,16,16,16,16,16,-6,-8,-9,-10,-11,-12,-13,-7,]),'RPAREN':([2,10,11,24,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,],[-1,-14,-15,-2,-3,-4,-5,37,38,39,40,41,42,43,44,-6,-8,-9,-10,-11,-12,-13,-7,]),'LPAREN':([3,4,5,6,7,8,9,16,],[17,18,19,20,21,22,23,28,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,5,6,7,8,14,],[1,10,11,12,13,15,]),}
+_lr_goto_items = {'expression':([0,12,13,14,15,17,18,19,20,21,22,23,28,],[1,24,25,26,27,29,30,31,32,33,34,35,36,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -32,7 +32,14 @@ _lr_productions = [
   ('expression -> expression MINUS expression','expression',3,'p_expression_minus','parser.py',15),
   ('expression -> expression DIVIDE expression','expression',3,'p_expression_divide','parser.py',19),
   ('expression -> expression MULTIPLY expression','expression',3,'p_expression_times','parser.py',23),
+  ('expression -> SQUAREROOT LPAREN expression RPAREN','expression',4,'p_expression_squareroot','parser.py',27),
   ('expression -> expression POWER LPAREN expression RPAREN','expression',5,'p_expression_power','parser.py',31),
+  ('expression -> SINE LPAREN expression RPAREN','expression',4,'p_expression_sine','parser.py',35),
+  ('expression -> COSINE LPAREN expression RPAREN','expression',4,'p_expression_cosine','parser.py',39),
+  ('expression -> TANGENT LPAREN expression RPAREN','expression',4,'p_expression_tangent','parser.py',43),
+  ('expression -> INVERSESINE LPAREN expression RPAREN','expression',4,'p_expression_inversesine','parser.py',47),
+  ('expression -> INVERSECOSINE LPAREN expression RPAREN','expression',4,'p_expression_inversecos','parser.py',51),
+  ('expression -> INVERSETANGENT LPAREN expression RPAREN','expression',4,'p_expression_inversetan','parser.py',55),
   ('expression -> PI','expression',1,'p_expression_pi','parser.py',59),
   ('expression -> FUNC_CALL','expression',1,'p_expression_func_call','parser.py',63),
 ]

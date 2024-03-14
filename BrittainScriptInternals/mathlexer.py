@@ -53,10 +53,37 @@ def t_NUMBER(t):
 
 # Regular expression for function calls # test
 def t_FUNC_CALL(t):
-    r'[a-zA-Z_][a-zA-Z0-9_]*\((.*?)\)'
-    t.value = t.value.split('(')
-    t.value[1] = t.value[1][:-1]  # Remove the closing parenthesis
-    return t
+    '''expression : FUNC_CALL'''
+    # p[1] is a list containing function name and its arguments
+    func_name = p[1][0]
+    arg_str = p[1][1]  # The argument is a string
+    try:
+        # Try converting the argument to a numerical value
+        arg = float(arg_str)
+    except ValueError:
+        # If conversion fails, print an error message and return None
+        print("Error: Invalid argument '{}' for function '{}'".format(arg_str, func_name))
+        p[0] = None
+        return
+    # Replace all funcs requiring arguments here
+    if func_name == 'sqrroot':
+        p[0] = math.sqrt(arg)
+    elif func_name == 'sin':
+        p[0] = math.degrees(math.sin(math.radians(arg)))  # Convert degrees to radians
+    elif func_name == 'cos':
+        p[0] = math.degrees(math.cos(math.radians(arg)))  # Convert degrees to radians
+    elif func_name == 'tan':
+        p[0] = math.degrees(math.tan(math.radians(arg)))  # Convert degrees to radians
+    elif func_name == 'isin':
+        p[0] = math.degrees(math.asin(arg))
+    elif func_name == 'icos':
+        p[0] = math.degrees(math.acos(arg))
+    elif func_name == 'itan':
+        p[0] = math.degrees(math.atan(arg))
+    else:
+        # If the function name is not recognized, assign a default value to p[0]
+        print("Error: Unrecognized function '{}'".format(func_name))
+        p[0] = None
 
 def t_newline(t):
     r'\n+'

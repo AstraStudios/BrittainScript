@@ -1,15 +1,5 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
-Unused terminals:
-
-    COSINE
-    INVERSECOSINE
-    INVERSESINE
-    INVERSETANGENT
-    SINE
-    SQUAREROOT
-    TANGENT
-
 Grammar
 
 Rule 0     S' -> expression
@@ -18,34 +8,41 @@ Rule 2     expression -> expression PLUS expression
 Rule 3     expression -> expression MINUS expression
 Rule 4     expression -> expression DIVIDE expression
 Rule 5     expression -> expression MULTIPLY expression
-Rule 6     expression -> expression POWER LPAREN expression RPAREN
-Rule 7     expression -> PI
-Rule 8     expression -> FUNC_CALL
+Rule 6     expression -> SQUAREROOT LPAREN expression RPAREN
+Rule 7     expression -> expression POWER LPAREN expression RPAREN
+Rule 8     expression -> SINE LPAREN expression RPAREN
+Rule 9     expression -> COSINE LPAREN expression RPAREN
+Rule 10    expression -> TANGENT LPAREN expression RPAREN
+Rule 11    expression -> INVERSESINE LPAREN expression RPAREN
+Rule 12    expression -> INVERSECOSINE LPAREN expression RPAREN
+Rule 13    expression -> INVERSETANGENT LPAREN expression RPAREN
+Rule 14    expression -> PI
+Rule 15    expression -> FUNC_CALL
 
 Terminals, with rules where they appear
 
-COSINE               : 
+COSINE               : 9
 DIVIDE               : 4
-FUNC_CALL            : 8
-INVERSECOSINE        : 
-INVERSESINE          : 
-INVERSETANGENT       : 
-LPAREN               : 6
+FUNC_CALL            : 15
+INVERSECOSINE        : 12
+INVERSESINE          : 11
+INVERSETANGENT       : 13
+LPAREN               : 6 7 8 9 10 11 12 13
 MINUS                : 3
 MULTIPLY             : 5
 NUMBER               : 1
-PI                   : 7
+PI                   : 14
 PLUS                 : 2
-POWER                : 6
-RPAREN               : 6
-SINE                 : 
-SQUAREROOT           : 
-TANGENT              : 
+POWER                : 7
+RPAREN               : 6 7 8 9 10 11 12 13
+SINE                 : 8
+SQUAREROOT           : 6
+TANGENT              : 10
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 2 2 3 3 4 4 5 5 6 6 0
+expression           : 2 2 3 3 4 4 5 5 6 7 7 8 9 10 11 12 13 0
 
 Parsing method: LALR
 
@@ -57,13 +54,27 @@ state 0
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression DIVIDE expression
     (5) expression -> . expression MULTIPLY expression
-    (6) expression -> . expression POWER LPAREN expression RPAREN
-    (7) expression -> . PI
-    (8) expression -> . FUNC_CALL
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
 
     NUMBER          shift and go to state 2
-    PI              shift and go to state 3
-    FUNC_CALL       shift and go to state 4
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
 
     expression                     shift and go to state 1
 
@@ -74,13 +85,13 @@ state 1
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . DIVIDE expression
     (5) expression -> expression . MULTIPLY expression
-    (6) expression -> expression . POWER LPAREN expression RPAREN
+    (7) expression -> expression . POWER LPAREN expression RPAREN
 
-    PLUS            shift and go to state 5
-    MINUS           shift and go to state 6
-    DIVIDE          shift and go to state 7
-    MULTIPLY        shift and go to state 8
-    POWER           shift and go to state 9
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
 
 
 state 2
@@ -98,31 +109,80 @@ state 2
 
 state 3
 
-    (7) expression -> PI .
+    (6) expression -> SQUAREROOT . LPAREN expression RPAREN
 
-    PLUS            reduce using rule 7 (expression -> PI .)
-    MINUS           reduce using rule 7 (expression -> PI .)
-    DIVIDE          reduce using rule 7 (expression -> PI .)
-    MULTIPLY        reduce using rule 7 (expression -> PI .)
-    POWER           reduce using rule 7 (expression -> PI .)
-    $end            reduce using rule 7 (expression -> PI .)
-    RPAREN          reduce using rule 7 (expression -> PI .)
+    LPAREN          shift and go to state 17
 
 
 state 4
 
-    (8) expression -> FUNC_CALL .
+    (8) expression -> SINE . LPAREN expression RPAREN
 
-    PLUS            reduce using rule 8 (expression -> FUNC_CALL .)
-    MINUS           reduce using rule 8 (expression -> FUNC_CALL .)
-    DIVIDE          reduce using rule 8 (expression -> FUNC_CALL .)
-    MULTIPLY        reduce using rule 8 (expression -> FUNC_CALL .)
-    POWER           reduce using rule 8 (expression -> FUNC_CALL .)
-    $end            reduce using rule 8 (expression -> FUNC_CALL .)
-    RPAREN          reduce using rule 8 (expression -> FUNC_CALL .)
+    LPAREN          shift and go to state 18
 
 
 state 5
+
+    (9) expression -> COSINE . LPAREN expression RPAREN
+
+    LPAREN          shift and go to state 19
+
+
+state 6
+
+    (10) expression -> TANGENT . LPAREN expression RPAREN
+
+    LPAREN          shift and go to state 20
+
+
+state 7
+
+    (11) expression -> INVERSESINE . LPAREN expression RPAREN
+
+    LPAREN          shift and go to state 21
+
+
+state 8
+
+    (12) expression -> INVERSECOSINE . LPAREN expression RPAREN
+
+    LPAREN          shift and go to state 22
+
+
+state 9
+
+    (13) expression -> INVERSETANGENT . LPAREN expression RPAREN
+
+    LPAREN          shift and go to state 23
+
+
+state 10
+
+    (14) expression -> PI .
+
+    PLUS            reduce using rule 14 (expression -> PI .)
+    MINUS           reduce using rule 14 (expression -> PI .)
+    DIVIDE          reduce using rule 14 (expression -> PI .)
+    MULTIPLY        reduce using rule 14 (expression -> PI .)
+    POWER           reduce using rule 14 (expression -> PI .)
+    $end            reduce using rule 14 (expression -> PI .)
+    RPAREN          reduce using rule 14 (expression -> PI .)
+
+
+state 11
+
+    (15) expression -> FUNC_CALL .
+
+    PLUS            reduce using rule 15 (expression -> FUNC_CALL .)
+    MINUS           reduce using rule 15 (expression -> FUNC_CALL .)
+    DIVIDE          reduce using rule 15 (expression -> FUNC_CALL .)
+    MULTIPLY        reduce using rule 15 (expression -> FUNC_CALL .)
+    POWER           reduce using rule 15 (expression -> FUNC_CALL .)
+    $end            reduce using rule 15 (expression -> FUNC_CALL .)
+    RPAREN          reduce using rule 15 (expression -> FUNC_CALL .)
+
+
+state 12
 
     (2) expression -> expression PLUS . expression
     (1) expression -> . NUMBER
@@ -130,17 +190,31 @@ state 5
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression DIVIDE expression
     (5) expression -> . expression MULTIPLY expression
-    (6) expression -> . expression POWER LPAREN expression RPAREN
-    (7) expression -> . PI
-    (8) expression -> . FUNC_CALL
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
 
     NUMBER          shift and go to state 2
-    PI              shift and go to state 3
-    FUNC_CALL       shift and go to state 4
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
 
-    expression                     shift and go to state 10
+    expression                     shift and go to state 24
 
-state 6
+state 13
 
     (3) expression -> expression MINUS . expression
     (1) expression -> . NUMBER
@@ -148,17 +222,31 @@ state 6
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression DIVIDE expression
     (5) expression -> . expression MULTIPLY expression
-    (6) expression -> . expression POWER LPAREN expression RPAREN
-    (7) expression -> . PI
-    (8) expression -> . FUNC_CALL
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
 
     NUMBER          shift and go to state 2
-    PI              shift and go to state 3
-    FUNC_CALL       shift and go to state 4
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
 
-    expression                     shift and go to state 11
+    expression                     shift and go to state 25
 
-state 7
+state 14
 
     (4) expression -> expression DIVIDE . expression
     (1) expression -> . NUMBER
@@ -166,17 +254,31 @@ state 7
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression DIVIDE expression
     (5) expression -> . expression MULTIPLY expression
-    (6) expression -> . expression POWER LPAREN expression RPAREN
-    (7) expression -> . PI
-    (8) expression -> . FUNC_CALL
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
 
     NUMBER          shift and go to state 2
-    PI              shift and go to state 3
-    FUNC_CALL       shift and go to state 4
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
 
-    expression                     shift and go to state 12
+    expression                     shift and go to state 26
 
-state 8
+state 15
 
     (5) expression -> expression MULTIPLY . expression
     (1) expression -> . NUMBER
@@ -184,31 +286,269 @@ state 8
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression DIVIDE expression
     (5) expression -> . expression MULTIPLY expression
-    (6) expression -> . expression POWER LPAREN expression RPAREN
-    (7) expression -> . PI
-    (8) expression -> . FUNC_CALL
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
 
     NUMBER          shift and go to state 2
-    PI              shift and go to state 3
-    FUNC_CALL       shift and go to state 4
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
 
-    expression                     shift and go to state 13
+    expression                     shift and go to state 27
 
-state 9
+state 16
 
-    (6) expression -> expression POWER . LPAREN expression RPAREN
+    (7) expression -> expression POWER . LPAREN expression RPAREN
 
-    LPAREN          shift and go to state 14
+    LPAREN          shift and go to state 28
 
 
-state 10
+state 17
+
+    (6) expression -> SQUAREROOT LPAREN . expression RPAREN
+    (1) expression -> . NUMBER
+    (2) expression -> . expression PLUS expression
+    (3) expression -> . expression MINUS expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
+
+    NUMBER          shift and go to state 2
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
+
+    expression                     shift and go to state 29
+
+state 18
+
+    (8) expression -> SINE LPAREN . expression RPAREN
+    (1) expression -> . NUMBER
+    (2) expression -> . expression PLUS expression
+    (3) expression -> . expression MINUS expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
+
+    NUMBER          shift and go to state 2
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
+
+    expression                     shift and go to state 30
+
+state 19
+
+    (9) expression -> COSINE LPAREN . expression RPAREN
+    (1) expression -> . NUMBER
+    (2) expression -> . expression PLUS expression
+    (3) expression -> . expression MINUS expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
+
+    NUMBER          shift and go to state 2
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
+
+    expression                     shift and go to state 31
+
+state 20
+
+    (10) expression -> TANGENT LPAREN . expression RPAREN
+    (1) expression -> . NUMBER
+    (2) expression -> . expression PLUS expression
+    (3) expression -> . expression MINUS expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
+
+    NUMBER          shift and go to state 2
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
+
+    expression                     shift and go to state 32
+
+state 21
+
+    (11) expression -> INVERSESINE LPAREN . expression RPAREN
+    (1) expression -> . NUMBER
+    (2) expression -> . expression PLUS expression
+    (3) expression -> . expression MINUS expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
+
+    NUMBER          shift and go to state 2
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
+
+    expression                     shift and go to state 33
+
+state 22
+
+    (12) expression -> INVERSECOSINE LPAREN . expression RPAREN
+    (1) expression -> . NUMBER
+    (2) expression -> . expression PLUS expression
+    (3) expression -> . expression MINUS expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
+
+    NUMBER          shift and go to state 2
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
+
+    expression                     shift and go to state 34
+
+state 23
+
+    (13) expression -> INVERSETANGENT LPAREN . expression RPAREN
+    (1) expression -> . NUMBER
+    (2) expression -> . expression PLUS expression
+    (3) expression -> . expression MINUS expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . expression MULTIPLY expression
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
+
+    NUMBER          shift and go to state 2
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
+
+    expression                     shift and go to state 35
+
+state 24
 
     (2) expression -> expression PLUS expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . DIVIDE expression
     (5) expression -> expression . MULTIPLY expression
-    (6) expression -> expression . POWER LPAREN expression RPAREN
+    (7) expression -> expression . POWER LPAREN expression RPAREN
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -217,11 +557,11 @@ state 10
   ! shift/reduce conflict for POWER resolved as shift
     $end            reduce using rule 2 (expression -> expression PLUS expression .)
     RPAREN          reduce using rule 2 (expression -> expression PLUS expression .)
-    PLUS            shift and go to state 5
-    MINUS           shift and go to state 6
-    DIVIDE          shift and go to state 7
-    MULTIPLY        shift and go to state 8
-    POWER           shift and go to state 9
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
 
   ! PLUS            [ reduce using rule 2 (expression -> expression PLUS expression .) ]
   ! MINUS           [ reduce using rule 2 (expression -> expression PLUS expression .) ]
@@ -230,14 +570,14 @@ state 10
   ! POWER           [ reduce using rule 2 (expression -> expression PLUS expression .) ]
 
 
-state 11
+state 25
 
     (3) expression -> expression MINUS expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . DIVIDE expression
     (5) expression -> expression . MULTIPLY expression
-    (6) expression -> expression . POWER LPAREN expression RPAREN
+    (7) expression -> expression . POWER LPAREN expression RPAREN
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -246,11 +586,11 @@ state 11
   ! shift/reduce conflict for POWER resolved as shift
     $end            reduce using rule 3 (expression -> expression MINUS expression .)
     RPAREN          reduce using rule 3 (expression -> expression MINUS expression .)
-    PLUS            shift and go to state 5
-    MINUS           shift and go to state 6
-    DIVIDE          shift and go to state 7
-    MULTIPLY        shift and go to state 8
-    POWER           shift and go to state 9
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
 
   ! PLUS            [ reduce using rule 3 (expression -> expression MINUS expression .) ]
   ! MINUS           [ reduce using rule 3 (expression -> expression MINUS expression .) ]
@@ -259,14 +599,14 @@ state 11
   ! POWER           [ reduce using rule 3 (expression -> expression MINUS expression .) ]
 
 
-state 12
+state 26
 
     (4) expression -> expression DIVIDE expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . DIVIDE expression
     (5) expression -> expression . MULTIPLY expression
-    (6) expression -> expression . POWER LPAREN expression RPAREN
+    (7) expression -> expression . POWER LPAREN expression RPAREN
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -275,11 +615,11 @@ state 12
   ! shift/reduce conflict for POWER resolved as shift
     $end            reduce using rule 4 (expression -> expression DIVIDE expression .)
     RPAREN          reduce using rule 4 (expression -> expression DIVIDE expression .)
-    PLUS            shift and go to state 5
-    MINUS           shift and go to state 6
-    DIVIDE          shift and go to state 7
-    MULTIPLY        shift and go to state 8
-    POWER           shift and go to state 9
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
 
   ! PLUS            [ reduce using rule 4 (expression -> expression DIVIDE expression .) ]
   ! MINUS           [ reduce using rule 4 (expression -> expression DIVIDE expression .) ]
@@ -288,14 +628,14 @@ state 12
   ! POWER           [ reduce using rule 4 (expression -> expression DIVIDE expression .) ]
 
 
-state 13
+state 27
 
     (5) expression -> expression MULTIPLY expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . DIVIDE expression
     (5) expression -> expression . MULTIPLY expression
-    (6) expression -> expression . POWER LPAREN expression RPAREN
+    (7) expression -> expression . POWER LPAREN expression RPAREN
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -304,11 +644,11 @@ state 13
   ! shift/reduce conflict for POWER resolved as shift
     $end            reduce using rule 5 (expression -> expression MULTIPLY expression .)
     RPAREN          reduce using rule 5 (expression -> expression MULTIPLY expression .)
-    PLUS            shift and go to state 5
-    MINUS           shift and go to state 6
-    DIVIDE          shift and go to state 7
-    MULTIPLY        shift and go to state 8
-    POWER           shift and go to state 9
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
 
   ! PLUS            [ reduce using rule 5 (expression -> expression MULTIPLY expression .) ]
   ! MINUS           [ reduce using rule 5 (expression -> expression MULTIPLY expression .) ]
@@ -317,73 +657,297 @@ state 13
   ! POWER           [ reduce using rule 5 (expression -> expression MULTIPLY expression .) ]
 
 
-state 14
+state 28
 
-    (6) expression -> expression POWER LPAREN . expression RPAREN
+    (7) expression -> expression POWER LPAREN . expression RPAREN
     (1) expression -> . NUMBER
     (2) expression -> . expression PLUS expression
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression DIVIDE expression
     (5) expression -> . expression MULTIPLY expression
-    (6) expression -> . expression POWER LPAREN expression RPAREN
-    (7) expression -> . PI
-    (8) expression -> . FUNC_CALL
+    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
+    (7) expression -> . expression POWER LPAREN expression RPAREN
+    (8) expression -> . SINE LPAREN expression RPAREN
+    (9) expression -> . COSINE LPAREN expression RPAREN
+    (10) expression -> . TANGENT LPAREN expression RPAREN
+    (11) expression -> . INVERSESINE LPAREN expression RPAREN
+    (12) expression -> . INVERSECOSINE LPAREN expression RPAREN
+    (13) expression -> . INVERSETANGENT LPAREN expression RPAREN
+    (14) expression -> . PI
+    (15) expression -> . FUNC_CALL
 
     NUMBER          shift and go to state 2
-    PI              shift and go to state 3
-    FUNC_CALL       shift and go to state 4
+    SQUAREROOT      shift and go to state 3
+    SINE            shift and go to state 4
+    COSINE          shift and go to state 5
+    TANGENT         shift and go to state 6
+    INVERSESINE     shift and go to state 7
+    INVERSECOSINE   shift and go to state 8
+    INVERSETANGENT  shift and go to state 9
+    PI              shift and go to state 10
+    FUNC_CALL       shift and go to state 11
 
-    expression                     shift and go to state 15
+    expression                     shift and go to state 36
 
-state 15
+state 29
 
-    (6) expression -> expression POWER LPAREN expression . RPAREN
+    (6) expression -> SQUAREROOT LPAREN expression . RPAREN
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . DIVIDE expression
     (5) expression -> expression . MULTIPLY expression
-    (6) expression -> expression . POWER LPAREN expression RPAREN
+    (7) expression -> expression . POWER LPAREN expression RPAREN
 
-    RPAREN          shift and go to state 16
-    PLUS            shift and go to state 5
-    MINUS           shift and go to state 6
-    DIVIDE          shift and go to state 7
-    MULTIPLY        shift and go to state 8
-    POWER           shift and go to state 9
+    RPAREN          shift and go to state 37
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
 
 
-state 16
+state 30
 
-    (6) expression -> expression POWER LPAREN expression RPAREN .
+    (8) expression -> SINE LPAREN expression . RPAREN
+    (2) expression -> expression . PLUS expression
+    (3) expression -> expression . MINUS expression
+    (4) expression -> expression . DIVIDE expression
+    (5) expression -> expression . MULTIPLY expression
+    (7) expression -> expression . POWER LPAREN expression RPAREN
 
-    PLUS            reduce using rule 6 (expression -> expression POWER LPAREN expression RPAREN .)
-    MINUS           reduce using rule 6 (expression -> expression POWER LPAREN expression RPAREN .)
-    DIVIDE          reduce using rule 6 (expression -> expression POWER LPAREN expression RPAREN .)
-    MULTIPLY        reduce using rule 6 (expression -> expression POWER LPAREN expression RPAREN .)
-    POWER           reduce using rule 6 (expression -> expression POWER LPAREN expression RPAREN .)
-    $end            reduce using rule 6 (expression -> expression POWER LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 6 (expression -> expression POWER LPAREN expression RPAREN .)
+    RPAREN          shift and go to state 38
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
+
+
+state 31
+
+    (9) expression -> COSINE LPAREN expression . RPAREN
+    (2) expression -> expression . PLUS expression
+    (3) expression -> expression . MINUS expression
+    (4) expression -> expression . DIVIDE expression
+    (5) expression -> expression . MULTIPLY expression
+    (7) expression -> expression . POWER LPAREN expression RPAREN
+
+    RPAREN          shift and go to state 39
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
+
+
+state 32
+
+    (10) expression -> TANGENT LPAREN expression . RPAREN
+    (2) expression -> expression . PLUS expression
+    (3) expression -> expression . MINUS expression
+    (4) expression -> expression . DIVIDE expression
+    (5) expression -> expression . MULTIPLY expression
+    (7) expression -> expression . POWER LPAREN expression RPAREN
+
+    RPAREN          shift and go to state 40
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
+
+
+state 33
+
+    (11) expression -> INVERSESINE LPAREN expression . RPAREN
+    (2) expression -> expression . PLUS expression
+    (3) expression -> expression . MINUS expression
+    (4) expression -> expression . DIVIDE expression
+    (5) expression -> expression . MULTIPLY expression
+    (7) expression -> expression . POWER LPAREN expression RPAREN
+
+    RPAREN          shift and go to state 41
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
+
+
+state 34
+
+    (12) expression -> INVERSECOSINE LPAREN expression . RPAREN
+    (2) expression -> expression . PLUS expression
+    (3) expression -> expression . MINUS expression
+    (4) expression -> expression . DIVIDE expression
+    (5) expression -> expression . MULTIPLY expression
+    (7) expression -> expression . POWER LPAREN expression RPAREN
+
+    RPAREN          shift and go to state 42
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
+
+
+state 35
+
+    (13) expression -> INVERSETANGENT LPAREN expression . RPAREN
+    (2) expression -> expression . PLUS expression
+    (3) expression -> expression . MINUS expression
+    (4) expression -> expression . DIVIDE expression
+    (5) expression -> expression . MULTIPLY expression
+    (7) expression -> expression . POWER LPAREN expression RPAREN
+
+    RPAREN          shift and go to state 43
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
+
+
+state 36
+
+    (7) expression -> expression POWER LPAREN expression . RPAREN
+    (2) expression -> expression . PLUS expression
+    (3) expression -> expression . MINUS expression
+    (4) expression -> expression . DIVIDE expression
+    (5) expression -> expression . MULTIPLY expression
+    (7) expression -> expression . POWER LPAREN expression RPAREN
+
+    RPAREN          shift and go to state 44
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MULTIPLY        shift and go to state 15
+    POWER           shift and go to state 16
+
+
+state 37
+
+    (6) expression -> SQUAREROOT LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 6 (expression -> SQUAREROOT LPAREN expression RPAREN .)
+    MINUS           reduce using rule 6 (expression -> SQUAREROOT LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 6 (expression -> SQUAREROOT LPAREN expression RPAREN .)
+    MULTIPLY        reduce using rule 6 (expression -> SQUAREROOT LPAREN expression RPAREN .)
+    POWER           reduce using rule 6 (expression -> SQUAREROOT LPAREN expression RPAREN .)
+    $end            reduce using rule 6 (expression -> SQUAREROOT LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 6 (expression -> SQUAREROOT LPAREN expression RPAREN .)
+
+
+state 38
+
+    (8) expression -> SINE LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 8 (expression -> SINE LPAREN expression RPAREN .)
+    MINUS           reduce using rule 8 (expression -> SINE LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 8 (expression -> SINE LPAREN expression RPAREN .)
+    MULTIPLY        reduce using rule 8 (expression -> SINE LPAREN expression RPAREN .)
+    POWER           reduce using rule 8 (expression -> SINE LPAREN expression RPAREN .)
+    $end            reduce using rule 8 (expression -> SINE LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 8 (expression -> SINE LPAREN expression RPAREN .)
+
+
+state 39
+
+    (9) expression -> COSINE LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 9 (expression -> COSINE LPAREN expression RPAREN .)
+    MINUS           reduce using rule 9 (expression -> COSINE LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 9 (expression -> COSINE LPAREN expression RPAREN .)
+    MULTIPLY        reduce using rule 9 (expression -> COSINE LPAREN expression RPAREN .)
+    POWER           reduce using rule 9 (expression -> COSINE LPAREN expression RPAREN .)
+    $end            reduce using rule 9 (expression -> COSINE LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 9 (expression -> COSINE LPAREN expression RPAREN .)
+
+
+state 40
+
+    (10) expression -> TANGENT LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 10 (expression -> TANGENT LPAREN expression RPAREN .)
+    MINUS           reduce using rule 10 (expression -> TANGENT LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 10 (expression -> TANGENT LPAREN expression RPAREN .)
+    MULTIPLY        reduce using rule 10 (expression -> TANGENT LPAREN expression RPAREN .)
+    POWER           reduce using rule 10 (expression -> TANGENT LPAREN expression RPAREN .)
+    $end            reduce using rule 10 (expression -> TANGENT LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 10 (expression -> TANGENT LPAREN expression RPAREN .)
+
+
+state 41
+
+    (11) expression -> INVERSESINE LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 11 (expression -> INVERSESINE LPAREN expression RPAREN .)
+    MINUS           reduce using rule 11 (expression -> INVERSESINE LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 11 (expression -> INVERSESINE LPAREN expression RPAREN .)
+    MULTIPLY        reduce using rule 11 (expression -> INVERSESINE LPAREN expression RPAREN .)
+    POWER           reduce using rule 11 (expression -> INVERSESINE LPAREN expression RPAREN .)
+    $end            reduce using rule 11 (expression -> INVERSESINE LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 11 (expression -> INVERSESINE LPAREN expression RPAREN .)
+
+
+state 42
+
+    (12) expression -> INVERSECOSINE LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 12 (expression -> INVERSECOSINE LPAREN expression RPAREN .)
+    MINUS           reduce using rule 12 (expression -> INVERSECOSINE LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 12 (expression -> INVERSECOSINE LPAREN expression RPAREN .)
+    MULTIPLY        reduce using rule 12 (expression -> INVERSECOSINE LPAREN expression RPAREN .)
+    POWER           reduce using rule 12 (expression -> INVERSECOSINE LPAREN expression RPAREN .)
+    $end            reduce using rule 12 (expression -> INVERSECOSINE LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 12 (expression -> INVERSECOSINE LPAREN expression RPAREN .)
+
+
+state 43
+
+    (13) expression -> INVERSETANGENT LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 13 (expression -> INVERSETANGENT LPAREN expression RPAREN .)
+    MINUS           reduce using rule 13 (expression -> INVERSETANGENT LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 13 (expression -> INVERSETANGENT LPAREN expression RPAREN .)
+    MULTIPLY        reduce using rule 13 (expression -> INVERSETANGENT LPAREN expression RPAREN .)
+    POWER           reduce using rule 13 (expression -> INVERSETANGENT LPAREN expression RPAREN .)
+    $end            reduce using rule 13 (expression -> INVERSETANGENT LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 13 (expression -> INVERSETANGENT LPAREN expression RPAREN .)
+
+
+state 44
+
+    (7) expression -> expression POWER LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 7 (expression -> expression POWER LPAREN expression RPAREN .)
+    MINUS           reduce using rule 7 (expression -> expression POWER LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 7 (expression -> expression POWER LPAREN expression RPAREN .)
+    MULTIPLY        reduce using rule 7 (expression -> expression POWER LPAREN expression RPAREN .)
+    POWER           reduce using rule 7 (expression -> expression POWER LPAREN expression RPAREN .)
+    $end            reduce using rule 7 (expression -> expression POWER LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 7 (expression -> expression POWER LPAREN expression RPAREN .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for PLUS in state 10 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 10 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 10 resolved as shift
-WARNING: shift/reduce conflict for MULTIPLY in state 10 resolved as shift
-WARNING: shift/reduce conflict for POWER in state 10 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 11 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 11 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 11 resolved as shift
-WARNING: shift/reduce conflict for MULTIPLY in state 11 resolved as shift
-WARNING: shift/reduce conflict for POWER in state 11 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 12 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 12 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 12 resolved as shift
-WARNING: shift/reduce conflict for MULTIPLY in state 12 resolved as shift
-WARNING: shift/reduce conflict for POWER in state 12 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 13 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 13 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 13 resolved as shift
-WARNING: shift/reduce conflict for MULTIPLY in state 13 resolved as shift
-WARNING: shift/reduce conflict for POWER in state 13 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 24 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 24 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 24 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLY in state 24 resolved as shift
+WARNING: shift/reduce conflict for POWER in state 24 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 25 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 25 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 25 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLY in state 25 resolved as shift
+WARNING: shift/reduce conflict for POWER in state 25 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 26 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 26 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 26 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLY in state 26 resolved as shift
+WARNING: shift/reduce conflict for POWER in state 26 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 27 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 27 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 27 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLY in state 27 resolved as shift
+WARNING: shift/reduce conflict for POWER in state 27 resolved as shift
