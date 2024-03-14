@@ -78,50 +78,50 @@ def p_expression_tangent(p):
             return
     p[0] = math.degrees(math.tan(arg))
 
-def p_expression_inversesine(p):
-    'expression : INVERSESINE LPAREN expression RPAREN'
-    arg = p[3]
-    if isinstance(arg, str):
-        try: arg = float(arg)
-        except ValueError:
-            print("Error: Invalid argument '{}' for inverse sine".format(arg))
-            p[0] = None
-            return
-    if -1 <= arg <= 1:  # Check if the argument is within the valid range
-        p[0] = math.degrees(math.asin(arg))  # Convert the angle from radians to degrees
-    else:
-        print("Error: Argument '{}' is outside the valid range for inverse sine".format(arg))
-        p[0] = None
+#def p_expression_inversesine(p):
+    #'expression : INVERSESINE LPAREN expression RPAREN'
+    #arg = p[3]
+    #if isinstance(arg, str):
+        #try: arg = float(arg)
+        #except ValueError:
+            #print("Error: Invalid argument '{}' for inverse sine".format(arg))
+            #p[0] = None
+            #return
+    #if -1 <= arg <= 1:  # Check if the argument is within the valid range
+        #p[0] = math.degrees(math.asin(arg))  # Convert the angle from radians to degrees
+    #else:
+        #print("Error: Argument '{}' is outside the valid range for inverse sine".format(arg))
+        #p[0] = None
 
-def p_expression_inversecos(p):
-    'expression : INVERSECOSINE LPAREN expression RPAREN'
-    arg = p[3]
-    if isinstance(arg, str):
-        try: arg = float(arg)
-        except ValueError:
-            print("Error: Invalid argument '{}' for inverse cosine".format)
-            p[0] = None
-            return
-    if -1 <= arg <= 1:  # Check if the argument is within the valid range
-        p[0] = math.degrees(math.acos(arg))  # Convert the angle from radians to degrees
-    else:
-        print("Error: Argument '{}' is outside the valid range for inverse cosine".format(arg))
-        p[0] = None
+#def p_expression_inversecos(p):
+    #'expression : INVERSECOSINE LPAREN expression RPAREN'
+    #arg = p[3]
+    #if isinstance(arg, str):
+        #try: arg = float(arg)
+        #except ValueError:
+            #print("Error: Invalid argument '{}' for inverse cosine".format)
+            #p[0] = None
+            #return
+    #if -1 <= arg <= 1:  # Check if the argument is within the valid range
+        #p[0] = math.degrees(math.acos(arg))  # Convert the angle from radians to degrees
+    #else:
+        #print("Error: Argument '{}' is outside the valid range for inverse cosine".format(arg))
+        #p[0] = None
 
-def p_expression_inversetan(p):
-    'expression : INVERSETANGENT LPAREN expression RPAREN'
-    arg = p[3]
-    if isinstance(arg, str):
-        try: arg = float(arg)
-        except ValueError:
-            print("Error: Invalid argument '{}' for inverse tangent".format)
-            p[0] = None
-            return
-    if -1 <= arg <= 1:  # Check if the argument is within the valid range
-        p[0] = math.degrees(math.atan(arg))  # Convert the angle from radians to degrees
-    else:
-        print("Error: Argument '{}' is outside the valid range for inverse tangent".format(arg))
-        p[0] = None
+#def p_expression_inversetan(p):
+    #'expression : INVERSETANGENT LPAREN expression RPAREN'
+    #arg = p[3]
+    #if isinstance(arg, str):
+        #try: arg = float(arg)
+        #except ValueError:
+            #print("Error: Invalid argument '{}' for inverse tangent".format)
+            #p[0] = None
+            #return
+    #if -1 <= arg <= 1:  # Check if the argument is within the valid range
+        #p[0] = math.degrees(math.atan(arg))  # Convert the angle from radians to degrees
+    #else:
+        #print("Error: Argument '{}' is outside the valid range for inverse tangent".format(arg))
+        #p[0] = None
 
 def p_expression_pi(p):
     'expression : PI'

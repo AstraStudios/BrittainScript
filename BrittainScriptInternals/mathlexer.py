@@ -17,9 +17,9 @@ tokens = (
     'COSINE',
     'TANGENT',
     # inverse trig # **convert all to degrees from radians**
-    'INVERSESINE', #asin
-    'INVERSECOSINE', #acos
-    'INVERSETANGENT', #atan
+    # 'INVERSESINE', #asin
+    # 'INVERSECOSINE', #acos
+    # 'INVERSETANGENT', #atan
     # random math
     'PI',
     'LPAREN',
@@ -38,9 +38,9 @@ t_POWER = r'\^'
 t_SINE = r'sin'
 t_COSINE = r'cos'
 t_TANGENT = r'tan'
-t_INVERSESINE = r'isin'
-t_INVERSECOSINE = r'icos'
-t_INVERSETANGENT = r'itan'
+# t_INVERSESINE = r'isin'
+# t_INVERSECOSINE = r'icos'
+# t_INVERSETANGENT = r'itan'
 t_PI = r'pi'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
@@ -74,12 +74,12 @@ def t_FUNC_CALL(t):
         p[0] = math.degrees(math.cos(math.radians(arg)))  # Convert degrees to radians
     elif func_name == 'tan':
         p[0] = math.degrees(math.tan(math.radians(arg)))  # Convert degrees to radians
-    elif func_name == 'isin':
-        p[0] = math.degrees(math.asin(arg))
-    elif func_name == 'icos':
-        p[0] = math.degrees(math.acos(arg))
-    elif func_name == 'itan':
-        p[0] = math.degrees(math.atan(arg))
+    #elif func_name == 'isin':
+        #p[0] = math.degrees(math.asin(arg))
+    #elif func_name == 'icos':
+        #p[0] = math.degrees(math.acos(arg))
+    #elif func_name == 'itan':
+        #p[0] = math.degrees(math.atan(arg))
     else:
         # If the function name is not recognized, assign a default value to p[0]
         print("Error: Unrecognized function '{}'".format(func_name))
