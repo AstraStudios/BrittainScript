@@ -41,14 +41,21 @@ def p_expression_squareroot(p):
     if isinstance(arg, str):
         try: arg = float(arg)
         except ValueError:
-            print("Error: Invalid argument '{} for squareroot".format)
+            print("Error: Invalid argument '{}' for squareroot".format)
             p[0] = None
             return
     p[0] = math.sqrt(arg)
 
 def p_expression_power(p):
-    'expression : expression POWER LPAREN expression RPAREN'
-    p[0] = math.pow(p[1], p[3])
+    'expression : expression POWER expression'
+    arg = p[3]
+    if isinstance(arg,str):
+        try: arg = float(arg)
+        except ValueError:
+            print("Error: Invalid argument '{}' for square".format(arg))
+            p[0] = None
+            return
+    p[0] = math.pow(p[1], arg)
 
 def p_expression_sine(p):
     'expression : SINE LPAREN expression RPAREN'
