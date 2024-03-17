@@ -1,7 +1,0 @@
-Simple addition
-num1 + num2
-To pass as an input: 
-function<num1 + num2>
-You can also use it like this:
-total = <num1 + num2>
-function<total>

@@ -1,0 +1,49 @@
+All math documentation is in this file
+
+Basic Math Functions:
+    Basic math is extremely simple in BrittainScript:
+        Addition: +
+        Subtraction: -
+        Division: /
+        Multiplication: *
+
+            
+            From now on documentation will have examples as well
+
+Algebra:
+    There is a number of algebraic expressions available in
+    BrittainScript:
+        Squareroot:
+            To squareroot a number
+            Example:
+                sqrroot(16)
+                That will produce 4
+        Power:
+            To put something to the power of
+            Example:
+                4^2
+                Which will produce 16
+        Pi:
+            Add pi into your code
+            Example:
+                5 * pi
+                Which would result in 15.7
+
+Trignometry:
+    Although there is no graphs available, you can still use sine,
+    cosine, and tangent:
+        Sine:
+            Get the value of a sine wave in degrees
+            Example:
+                sin(14)
+                sin(14) = 56.8
+        Cosine:
+            Get the value of a cosine wave in degrees
+            Example:
+                cos(14)
+                cos(14) = 7.8
+        Tangent:
+            Get the value of a tangent wave in degrees
+            Example:
+                tan(14)
+                tan(14) = 415.1
