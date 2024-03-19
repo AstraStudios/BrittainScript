@@ -37,8 +37,8 @@ def t_FUNC_CALL_TEXT(t):
         print("Error: Invalid argument '{}' for function '{}'".format(arg_str, func_name))
         p[0] = None
         return
-    if func_name == 'cond':
-        p[0] = 
+    #if func_name == 'cond':
+        #p[0] = 
 
 def t_VALUE(t):
     r'<[^>]*>'

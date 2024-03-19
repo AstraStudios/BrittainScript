@@ -24,6 +24,16 @@ tokens = (
     'PI',
     'LPAREN',
     'RPAREN',
+    'LESS_THAN_SIGN',
+    'GREATER_THAN_SIGN',
+    # functions
+    'IF',
+    'ELSEIF',
+    'WHILE',
+    'FOR',
+    'FUNC',
+    'ASSIGN',
+    'VALUE',
     # func call
     'FUNC_CALL'
 )
@@ -44,6 +54,14 @@ t_TANGENT = r'tan'
 t_PI = r'pi'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
+t_LESS_THAN_SIGN = r'\<'
+t_GREATER_THAN_SIGN = r'\>'
+t_IF = r'cond'
+t_ELSEIF = r'elsecond'
+t_WHILE = r'while'
+t_FOR = r'dur' #duration
+t_FUNC = r'func'
+t_ASSIGN = r'[<>]'
 
 # regular base action
 def t_NUMBER(t):
@@ -84,6 +102,11 @@ def t_FUNC_CALL(t):
         # If the function name is not recognized, assign a default value to p[0]
         print("Error: Unrecognized function '{}'".format(func_name))
         p[0] = None
+
+def t_VALUE(t):
+    r'<[^>]*>'
+    t.value = t.value[1:-1] # remove the < and > from the lexer
+    return t
 
 def t_newline(t):
     r'\n+'

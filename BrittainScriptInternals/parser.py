@@ -1,8 +1,6 @@
 import ply.yacc as yacc
-import mathlexer as mathlexer
-import textlexer as textlexer
-from mathlexer import tokens
-from textlexer import tokens
+import BrittainScriptInternals.lexer as lexer
+from BrittainScriptInternals.lexer import tokens
 import math as math
 
 symbol_table = {}
@@ -121,9 +119,9 @@ def p_error(p):
 parser = yacc.yacc()
 
 input_text = input("test: ")
-mathlexer.lexer.input(input_text)
+lexer.lexer.input(input_text)
 while True:
-    tok = mathlexer.lexer.token()
+    tok = lexer.lexer.token()
     if not tok:
         break
     print(tok)
