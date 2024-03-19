@@ -1,6 +1,6 @@
 import ply.yacc as yacc
-import BrittainScriptInternals.lexer as lexer
-from BrittainScriptInternals.lexer import tokens
+import lexer as lexer
+from lexer import tokens
 import math as math
 
 symbol_table = {}
@@ -103,15 +103,12 @@ def p_expression_func_call(p):
 
 # all text stuff from here on
     
-def p_expression_if(p):
-    'expression : IF LESS_THAN_SIGN '
+def p_expression_print(p):
+    'expression : PRINT LESSTHAN expression GREATERTHAN'
+    print(p[3])
 
-
-def p_assignment(p):
-    'assignment : ID ASSIGN VALUE'
-
-def p_expressionfunc_call_text(p):
-    '''expression : FUNC_CALL_TEXT'''
+#def p_assignment(p):
+    #'assignment : ID ASSIGN VALUE'
 
 def p_error(p):
     print("Error in input")

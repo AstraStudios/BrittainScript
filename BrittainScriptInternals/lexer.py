@@ -24,9 +24,10 @@ tokens = (
     'PI',
     'LPAREN',
     'RPAREN',
-    'LESS_THAN_SIGN',
-    'GREATER_THAN_SIGN',
+    'LESSTHAN',
+    'GREATERTHAN',
     # functions
+    'PRINT',
     'IF',
     'ELSEIF',
     'WHILE',
@@ -54,8 +55,9 @@ t_TANGENT = r'tan'
 t_PI = r'pi'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_LESS_THAN_SIGN = r'\<'
-t_GREATER_THAN_SIGN = r'\>'
+t_LESSTHAN = r'\<'
+t_GREATERTHAN = r'\>'
+t_PRINT = r'push'
 t_IF = r'cond'
 t_ELSEIF = r'elsecond'
 t_WHILE = r'while'
