@@ -1,7 +1,11 @@
 import ply.yacc as yacc
 import mathlexer as mathlexer
+import textlexer as textlexer
 from mathlexer import tokens
+from textlexer import tokens
 import math as math
+
+symbol_table = {}
 
 # basic function for everything thats complex
 #arg = p[3]
@@ -92,57 +96,24 @@ def p_expression_tangent(p):
             return
     p[0] = math.degrees(math.tan(arg))
 
-#def p_expression_inversesine(p):
-    #'expression : INVERSESINE LPAREN expression RPAREN'
-    #arg = p[3]
-    #if isinstance(arg, str):
-        #try: arg = float(arg)
-        #except ValueError:
-            #print("Error: Invalid argument '{}' for inverse sine".format(arg))
-            #p[0] = None
-            #return
-    #if -1 <= arg <= 1:  # Check if the argument is within the valid range
-        #p[0] = math.degrees(math.asin(arg))  # Convert the angle from radians to degrees
-    #else:
-        #print("Error: Argument '{}' is outside the valid range for inverse sine".format(arg))
-        #p[0] = None
-
-#def p_expression_inversecos(p):
-    #'expression : INVERSECOSINE LPAREN expression RPAREN'
-    #arg = p[3]
-    #if isinstance(arg, str):
-        #try: arg = float(arg)
-        #except ValueError:
-            #print("Error: Invalid argument '{}' for inverse cosine".format)
-            #p[0] = None
-            #return
-    #if -1 <= arg <= 1:  # Check if the argument is within the valid range
-        #p[0] = math.degrees(math.acos(arg))  # Convert the angle from radians to degrees
-    #else:
-        #print("Error: Argument '{}' is outside the valid range for inverse cosine".format(arg))
-        #p[0] = None
-
-#def p_expression_inversetan(p):
-    #'expression : INVERSETANGENT LPAREN expression RPAREN'
-    #arg = p[3]
-    #if isinstance(arg, str):
-        #try: arg = float(arg)
-        #except ValueError:
-            #print("Error: Invalid argument '{}' for inverse tangent".format)
-            #p[0] = None
-            #return
-    #if -1 <= arg <= 1:  # Check if the argument is within the valid range
-        #p[0] = math.degrees(math.atan(arg))  # Convert the angle from radians to degrees
-    #else:
-        #print("Error: Argument '{}' is outside the valid range for inverse tangent".format(arg))
-        #p[0] = None
-
 def p_expression_pi(p):
     'expression : PI'
     p[0] = math.pi
 
 def p_expression_func_call(p):
     '''expression : FUNC_CALL'''
+
+# all text stuff from here on
+    
+def p_expression_if(p):
+    'expression : IF LESS_THAN_SIGN '
+
+
+def p_assignment(p):
+    'assignment : ID ASSIGN VALUE'
+
+def p_expressionfunc_call_text(p):
+    '''expression : FUNC_CALL_TEXT'''
 
 def p_error(p):
     print("Error in input")
