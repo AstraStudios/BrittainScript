@@ -103,36 +103,15 @@ def p_expression_func_call(p):
 
 # all text stuff from here on
     
-def p_statement_print(p):
-    '''expression : PRINT LPAREN expression RPAREN'''
+def p_expression_print(p):
+    'expression : PRINT LPAREN expression RPAREN'
     p[0] = p[3]
 
-def p_statement_print_error(p):
-    'statement : PRINT LPAREN error RPAREN'
-    print("Error in push(print) statement. Bad expression")
-
-def p_statement_expr(p):
-    'statement : expression'
-    print(p[1])
-
-def p_statement_assign(p):
-    'statement : VAR NAME ASSIGN expression'
-    symbol_table[p[1]] = p[3]
-
-def p_expression_var(p):
-    'expression : NAME'
-    p[0] = symbol_table.get(p[1], f"Variable '{p[1]}' not defined")
+#def p_assignment(p):
+    #'assignment : ID ASSIGN VALUE'
 
 def p_error(p):
-    if p:
-        print(f"Syntax error at token '{p.value}', line {p.lineno}, position {find_column(input_text, p)}")
-    else:
-        print("Syntax error at EOF")
-
-# Helper function to find the column position of a token in the input string
-def find_column(input_text, token):
-    line_start = input_text.rfind('\n', 0, token.lexpos) + 1
-    return (token.lexpos - line_start) + 1
+    print("Error in input")
 
 parser = yacc.yacc()
 

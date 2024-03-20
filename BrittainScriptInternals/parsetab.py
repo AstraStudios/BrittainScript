@@ -6,7 +6,7 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ASSIGN COSINE DIVIDE ELSEIF EQUALS FOR FUNC FUNC_CALL IF LPAREN MINUS MULTIPLY NAME NUMBER PI PLUS POWER PRINT RPAREN SINE SQUAREROOT STRING TANGENT VALUE WHILEexpression : NUMBERexpression : expression PLUS expressionexpression : expression MINUS expressionexpression : expression DIVIDE expressionexpression : expression MULTIPLY expressionexpression : SQUAREROOT LPAREN expression RPARENexpression : expression POWER expressionexpression : SINE LPAREN expression RPARENexpression : COSINE LPAREN expression RPARENexpression : TANGENT LPAREN expression RPARENexpression : PIexpression : FUNC_CALLexpression : PRINT LPAREN expression RPARENstatement : PRINT LPAREN error RPARENstatement : expressionstatement : NAME EQUALS expression'
+_lr_signature = 'ASSIGN COSINE DIVIDE ELSEIF EXPRESSION FOR FUNC FUNC_CALL IF LPAREN MINUS MULTIPLY NUMBER PI PLUS POWER PRINT RPAREN SINE SQUAREROOT TANGENT VALUE WHILEexpression : NUMBERexpression : expression PLUS expressionexpression : expression MINUS expressionexpression : expression DIVIDE expressionexpression : expression MULTIPLY expressionexpression : SQUAREROOT LPAREN expression RPARENexpression : expression POWER expressionexpression : SINE LPAREN expression RPARENexpression : COSINE LPAREN expression RPARENexpression : TANGENT LPAREN expression RPARENexpression : PIexpression : FUNC_CALLexpression : PRINT LPAREN expression RPAREN'
     
 _lr_action_items = {'NUMBER':([0,10,11,12,13,14,15,16,17,18,19,],[2,2,2,2,2,2,2,2,2,2,2,]),'SQUAREROOT':([0,10,11,12,13,14,15,16,17,18,19,],[3,3,3,3,3,3,3,3,3,3,3,]),'SINE':([0,10,11,12,13,14,15,16,17,18,19,],[4,4,4,4,4,4,4,4,4,4,4,]),'COSINE':([0,10,11,12,13,14,15,16,17,18,19,],[5,5,5,5,5,5,5,5,5,5,5,]),'TANGENT':([0,10,11,12,13,14,15,16,17,18,19,],[6,6,6,6,6,6,6,6,6,6,6,]),'PI':([0,10,11,12,13,14,15,16,17,18,19,],[7,7,7,7,7,7,7,7,7,7,7,]),'FUNC_CALL':([0,10,11,12,13,14,15,16,17,18,19,],[8,8,8,8,8,8,8,8,8,8,8,]),'PRINT':([0,10,11,12,13,14,15,16,17,18,19,],[9,9,9,9,9,9,9,9,9,9,9,]),'$end':([1,2,7,8,20,21,22,23,24,30,31,32,33,34,],[0,-1,-11,-12,-2,-3,-4,-5,-7,-6,-8,-9,-10,-13,]),'PLUS':([1,2,7,8,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[10,-1,-11,-12,10,10,10,10,10,10,10,10,10,10,-6,-8,-9,-10,-13,]),'MINUS':([1,2,7,8,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[11,-1,-11,-12,11,11,11,11,11,11,11,11,11,11,-6,-8,-9,-10,-13,]),'DIVIDE':([1,2,7,8,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[12,-1,-11,-12,12,12,12,12,12,12,12,12,12,12,-6,-8,-9,-10,-13,]),'MULTIPLY':([1,2,7,8,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[13,-1,-11,-12,13,13,13,13,13,13,13,13,13,13,-6,-8,-9,-10,-13,]),'POWER':([1,2,7,8,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[14,-1,-11,-12,14,14,14,14,14,14,14,14,14,14,-6,-8,-9,-10,-13,]),'RPAREN':([2,7,8,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[-1,-11,-12,-2,-3,-4,-5,-7,30,31,32,33,34,-6,-8,-9,-10,-13,]),'LPAREN':([3,4,5,6,9,],[15,16,17,18,19,]),}
 
@@ -39,8 +39,5 @@ _lr_productions = [
   ('expression -> TANGENT LPAREN expression RPAREN','expression',4,'p_expression_tangent','parser.py',87),
   ('expression -> PI','expression',1,'p_expression_pi','parser.py',98),
   ('expression -> FUNC_CALL','expression',1,'p_expression_func_call','parser.py',102),
-  ('expression -> PRINT LPAREN expression RPAREN','expression',4,'p_statement_print','parser.py',107),
-  ('statement -> PRINT LPAREN error RPAREN','statement',4,'p_statement_print_error','parser.py',111),
-  ('statement -> expression','statement',1,'p_statement_expr','parser.py',115),
-  ('statement -> NAME EQUALS expression','statement',3,'p_statement_assign','parser.py',119),
+  ('expression -> PRINT LPAREN expression RPAREN','expression',4,'p_expression_print','parser.py',107),
 ]
