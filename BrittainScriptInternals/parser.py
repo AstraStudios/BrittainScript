@@ -102,9 +102,9 @@ def p_expression_func_call(p):
     '''expression : FUNC_CALL'''
 
 # all text stuff from here on
-    
+
 def p_expression_print(p):
-    'expression : PRINT LPAREN expression RPAREN'
+    'expression : PRINT LPAREN STRING RPAREN'
     p[0] = p[3]
 
 #def p_assignment(p):

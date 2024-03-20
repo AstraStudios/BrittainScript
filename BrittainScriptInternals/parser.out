@@ -4,11 +4,9 @@ Unused terminals:
 
     ASSIGN
     ELSEIF
-    EXPRESSION
     FOR
     FUNC
     IF
-    VALUE
     WHILE
 
 Grammar
@@ -26,7 +24,7 @@ Rule 9     expression -> COSINE LPAREN expression RPAREN
 Rule 10    expression -> TANGENT LPAREN expression RPAREN
 Rule 11    expression -> PI
 Rule 12    expression -> FUNC_CALL
-Rule 13    expression -> PRINT LPAREN expression RPAREN
+Rule 13    expression -> PRINT LPAREN STRING RPAREN
 
 Terminals, with rules where they appear
 
@@ -34,7 +32,6 @@ ASSIGN               :
 COSINE               : 9
 DIVIDE               : 4
 ELSEIF               : 
-EXPRESSION           : 
 FOR                  : 
 FUNC                 : 
 FUNC_CALL            : 12
@@ -50,14 +47,14 @@ PRINT                : 13
 RPAREN               : 6 8 9 10 13
 SINE                 : 8
 SQUAREROOT           : 6
+STRING               : 13
 TANGENT              : 10
-VALUE                : 
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 2 2 3 3 4 4 5 5 6 7 7 8 9 10 13 0
+expression           : 2 2 3 3 4 4 5 5 6 7 7 8 9 10 0
 
 Parsing method: LALR
 
@@ -76,7 +73,7 @@ state 0
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LPAREN expression RPAREN
+    (13) expression -> . PRINT LPAREN STRING RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -174,7 +171,7 @@ state 8
 
 state 9
 
-    (13) expression -> PRINT . LPAREN expression RPAREN
+    (13) expression -> PRINT . LPAREN STRING RPAREN
 
     LPAREN          shift and go to state 19
 
@@ -194,7 +191,7 @@ state 10
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LPAREN expression RPAREN
+    (13) expression -> . PRINT LPAREN STRING RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -222,7 +219,7 @@ state 11
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LPAREN expression RPAREN
+    (13) expression -> . PRINT LPAREN STRING RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -250,7 +247,7 @@ state 12
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LPAREN expression RPAREN
+    (13) expression -> . PRINT LPAREN STRING RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -278,7 +275,7 @@ state 13
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LPAREN expression RPAREN
+    (13) expression -> . PRINT LPAREN STRING RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -306,7 +303,7 @@ state 14
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LPAREN expression RPAREN
+    (13) expression -> . PRINT LPAREN STRING RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -334,7 +331,7 @@ state 15
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LPAREN expression RPAREN
+    (13) expression -> . PRINT LPAREN STRING RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -362,7 +359,7 @@ state 16
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LPAREN expression RPAREN
+    (13) expression -> . PRINT LPAREN STRING RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -390,7 +387,7 @@ state 17
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LPAREN expression RPAREN
+    (13) expression -> . PRINT LPAREN STRING RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -418,7 +415,7 @@ state 18
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LPAREN expression RPAREN
+    (13) expression -> . PRINT LPAREN STRING RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -433,31 +430,10 @@ state 18
 
 state 19
 
-    (13) expression -> PRINT LPAREN . expression RPAREN
-    (1) expression -> . NUMBER
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression DIVIDE expression
-    (5) expression -> . expression MULTIPLY expression
-    (6) expression -> . SQUAREROOT LPAREN expression RPAREN
-    (7) expression -> . expression POWER expression
-    (8) expression -> . SINE LPAREN expression RPAREN
-    (9) expression -> . COSINE LPAREN expression RPAREN
-    (10) expression -> . TANGENT LPAREN expression RPAREN
-    (11) expression -> . PI
-    (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LPAREN expression RPAREN
+    (13) expression -> PRINT LPAREN . STRING RPAREN
 
-    NUMBER          shift and go to state 2
-    SQUAREROOT      shift and go to state 3
-    SINE            shift and go to state 4
-    COSINE          shift and go to state 5
-    TANGENT         shift and go to state 6
-    PI              shift and go to state 7
-    FUNC_CALL       shift and go to state 8
-    PRINT           shift and go to state 9
+    STRING          shift and go to state 29
 
-    expression                     shift and go to state 29
 
 state 20
 
@@ -674,19 +650,9 @@ state 28
 
 state 29
 
-    (13) expression -> PRINT LPAREN expression . RPAREN
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . DIVIDE expression
-    (5) expression -> expression . MULTIPLY expression
-    (7) expression -> expression . POWER expression
+    (13) expression -> PRINT LPAREN STRING . RPAREN
 
     RPAREN          shift and go to state 34
-    PLUS            shift and go to state 10
-    MINUS           shift and go to state 11
-    DIVIDE          shift and go to state 12
-    MULTIPLY        shift and go to state 13
-    POWER           shift and go to state 14
 
 
 state 30
@@ -743,15 +709,15 @@ state 33
 
 state 34
 
-    (13) expression -> PRINT LPAREN expression RPAREN .
+    (13) expression -> PRINT LPAREN STRING RPAREN .
 
-    PLUS            reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
-    MINUS           reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
-    DIVIDE          reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
-    MULTIPLY        reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
-    POWER           reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
-    $end            reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
+    PLUS            reduce using rule 13 (expression -> PRINT LPAREN STRING RPAREN .)
+    MINUS           reduce using rule 13 (expression -> PRINT LPAREN STRING RPAREN .)
+    DIVIDE          reduce using rule 13 (expression -> PRINT LPAREN STRING RPAREN .)
+    MULTIPLY        reduce using rule 13 (expression -> PRINT LPAREN STRING RPAREN .)
+    POWER           reduce using rule 13 (expression -> PRINT LPAREN STRING RPAREN .)
+    $end            reduce using rule 13 (expression -> PRINT LPAREN STRING RPAREN .)
+    RPAREN          reduce using rule 13 (expression -> PRINT LPAREN STRING RPAREN .)
 
 WARNING: 
 WARNING: Conflicts:

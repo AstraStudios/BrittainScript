@@ -35,10 +35,9 @@ tokens = (
     'FOR',
     'FUNC',
     'ASSIGN',
-    'VALUE',
     # func call
     'FUNC_CALL',
-    'EXPRESSION'
+    'STRING'
 )
 
 t_PLUS = r'\+'
@@ -69,10 +68,6 @@ t_ASSIGN = r'[<>]'
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
-    return t
-
-def t_EXPRESSION(t):
-    r'[a-zA-Z][a-zA-Z0-9_]*\s*\([^)]*\)'
     return t
 
 # Regular expression for function calls # test
@@ -111,14 +106,14 @@ def t_FUNC_CALL(t):
         print("Error: Unrecognized function '{}'".format(func_name))
         p[0] = None
 
-def t_VALUE(t):
-    r'<[^>]*>'
-    t.value = t.value[1:-1] # remove the < and > from the lexer
-    return t
-
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
+def t_STRING(t):
+    r'"[^"]*"'
+    t.value = t.value[1:-1]
+    return t
 
 t_ignore = ' \t'
 
