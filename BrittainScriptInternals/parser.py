@@ -116,8 +116,12 @@ def p_statement_expr(p):
     print(p[1])
 
 def p_statement_assign(p):
-    'statement : NAME EQUALS expression'
+    'statement : VAR NAME ASSIGN expression'
     symbol_table[p[1]] = p[3]
+
+def p_expression_var(p):
+    'expression : NAME'
+    p[0] = symbol_table.get(p[1], f"Variable '{p[1]}' not defined")
 
 def p_error(p):
     if p:
