@@ -1,6 +1,14 @@
 import ply.lex as lex
 import math as math
-# math specific lexer(may merge both lexers)
+# lexer
+reserved = {
+    'cond' : 'IF',
+    'elsecond' : 'ELSEIF',
+    'while' : 'WHILE',
+    'dur' : 'FOR',
+    'push' : 'PRINT'
+}
+
 tokens = (
     # basic math
     'NUMBER',
@@ -8,6 +16,7 @@ tokens = (
     'MINUS',
     'DIVIDE',
     'MULTIPLY',
+    'EQUALS',
     # algebra
     #'ID', # basically math variables
     'SQUAREROOT',
@@ -24,25 +33,26 @@ tokens = (
     'PI',
     'LPAREN',
     'RPAREN',
-    'LESSTHAN',
-    'GREATERTHAN',
     # functions
-    'PRINT',
-    'IF',
-    'ELSEIF',
-    'WHILE',
-    'FOR',
+    #'PRINT',
+    #'IF',
+    #'ELSEIF',
+    #'WHILE',
+    #'FOR',
     'FUNC',
     'ASSIGN',
     'VALUE',
-    # func call
-    'FUNC_CALL'
-)
+    # various lexer funcs
+    'NAME',
+    'FUNC_CALL',
+    'STRING',
+) + tuple(reserved.values())
 
 t_PLUS = r'\+'
 t_MINUS = r'\-'
 t_DIVIDE = r'\/'
 t_MULTIPLY = r'\*'
+t_EQUALS = r'\='
 # assign
 t_SQUAREROOT = r'sqrroot'
 t_POWER = r'\^'
@@ -55,14 +65,13 @@ t_TANGENT = r'tan'
 t_PI = r'pi'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_LESSTHAN = r'\<'
-t_GREATERTHAN = r'\>'
-t_PRINT = r'push'
-t_IF = r'cond'
-t_ELSEIF = r'elsecond'
-t_WHILE = r'while'
-t_FOR = r'dur' #duration
+#t_PRINT = r'push'
+#t_IF = r'cond'
+#t_ELSEIF = r'elsecond'
+#t_WHILE = r'while'
+#t_FOR = r'dur' #duration
 t_FUNC = r'func'
+#t_NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
 t_ASSIGN = r'[<>]'
 
 # regular base action
@@ -71,6 +80,34 @@ def t_NUMBER(t):
     t.value = int(t.value)
     return t
 
+def t_NAME(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    if t.value in reserved:
+        t.type = reserved[t.value]
+    return t
+
+#working on these if needed
+
+def t_IF(t):
+    r'cond'
+    return t
+
+def t_ELSEIF(t):
+    r'elsecond'
+    return t
+
+def t_WHILE(t):
+    r'while'
+    return t
+
+def t_FOR(t):
+    r'dur'
+    return t
+
+def t_PRINT(t):
+    r'push'
+    return t
+    
 # Regular expression for function calls # test
 def t_FUNC_CALL(t):
     '''expression : FUNC_CALL'''
@@ -94,6 +131,8 @@ def t_FUNC_CALL(t):
         p[0] = math.degrees(math.cos(math.radians(arg)))  # Convert degrees to radians
     elif func_name == 'tan':
         p[0] = math.degrees(math.tan(math.radians(arg)))  # Convert degrees to radians
+    elif func_name == 'push':
+        p[0] = print(p[3])
     #elif func_name == 'isin':
         #p[0] = math.degrees(math.asin(arg))
     #elif func_name == 'icos':
@@ -105,16 +144,20 @@ def t_FUNC_CALL(t):
         print("Error: Unrecognized function '{}'".format(func_name))
         p[0] = None
 
-def t_VALUE(t):
-    r'<[^>]*>'
-    t.value = t.value[1:-1] # remove the < and > from the lexer
-    return t
-
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-t_ignore = ' \t'
+def t_STRING(t):
+    r'"[^"]*"'
+    t.value = t.value[1:-1]
+    return t
+
+#def t_EXPRESSION(t):
+    #r'[a-zA-Z][a-zA-Z0-9_]*\s*\([^)]*\)'
+    #return t
+
+t_ignore_WHITESPACE = '\s+'
 
 def t_error(t):
     print("Illegal character or syntax error at: '%s'" % t.value[0])

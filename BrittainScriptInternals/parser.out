@@ -7,6 +7,7 @@ Unused terminals:
     FOR
     FUNC
     IF
+    STRING
     VALUE
     WHILE
 
@@ -25,7 +26,10 @@ Rule 9     expression -> COSINE LPAREN expression RPAREN
 Rule 10    expression -> TANGENT LPAREN expression RPAREN
 Rule 11    expression -> PI
 Rule 12    expression -> FUNC_CALL
-Rule 13    expression -> PRINT LESSTHAN expression GREATERTHAN
+Rule 13    expression -> PRINT LPAREN expression RPAREN
+Rule 14    statement -> PRINT LPAREN error RPAREN
+Rule 15    statement -> expression
+Rule 16    statement -> NAME EQUALS expression
 
 Terminals, with rules where they appear
 
@@ -33,31 +37,33 @@ ASSIGN               :
 COSINE               : 9
 DIVIDE               : 4
 ELSEIF               : 
+EQUALS               : 16
 FOR                  : 
 FUNC                 : 
 FUNC_CALL            : 12
-GREATERTHAN          : 13
 IF                   : 
-LESSTHAN             : 13
-LPAREN               : 6 8 9 10
+LPAREN               : 6 8 9 10 13 14
 MINUS                : 3
 MULTIPLY             : 5
+NAME                 : 16
 NUMBER               : 1
 PI                   : 11
 PLUS                 : 2
 POWER                : 7
-PRINT                : 13
-RPAREN               : 6 8 9 10
+PRINT                : 13 14
+RPAREN               : 6 8 9 10 13 14
 SINE                 : 8
 SQUAREROOT           : 6
+STRING               : 
 TANGENT              : 10
 VALUE                : 
 WHILE                : 
-error                : 
+error                : 14
 
 Nonterminals, with rules where they appear
 
-expression           : 2 2 3 3 4 4 5 5 6 7 7 8 9 10 13 0
+expression           : 2 2 3 3 4 4 5 5 6 7 7 8 9 10 13 15 16 0
+statement            : 
 
 Parsing method: LALR
 
@@ -76,7 +82,7 @@ state 0
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LESSTHAN expression GREATERTHAN
+    (13) expression -> . PRINT LPAREN expression RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -116,7 +122,6 @@ state 2
     POWER           reduce using rule 1 (expression -> NUMBER .)
     $end            reduce using rule 1 (expression -> NUMBER .)
     RPAREN          reduce using rule 1 (expression -> NUMBER .)
-    GREATERTHAN     reduce using rule 1 (expression -> NUMBER .)
 
 
 state 3
@@ -158,7 +163,6 @@ state 7
     POWER           reduce using rule 11 (expression -> PI .)
     $end            reduce using rule 11 (expression -> PI .)
     RPAREN          reduce using rule 11 (expression -> PI .)
-    GREATERTHAN     reduce using rule 11 (expression -> PI .)
 
 
 state 8
@@ -172,14 +176,13 @@ state 8
     POWER           reduce using rule 12 (expression -> FUNC_CALL .)
     $end            reduce using rule 12 (expression -> FUNC_CALL .)
     RPAREN          reduce using rule 12 (expression -> FUNC_CALL .)
-    GREATERTHAN     reduce using rule 12 (expression -> FUNC_CALL .)
 
 
 state 9
 
-    (13) expression -> PRINT . LESSTHAN expression GREATERTHAN
+    (13) expression -> PRINT . LPAREN expression RPAREN
 
-    LESSTHAN        shift and go to state 19
+    LPAREN          shift and go to state 19
 
 
 state 10
@@ -197,7 +200,7 @@ state 10
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LESSTHAN expression GREATERTHAN
+    (13) expression -> . PRINT LPAREN expression RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -225,7 +228,7 @@ state 11
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LESSTHAN expression GREATERTHAN
+    (13) expression -> . PRINT LPAREN expression RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -253,7 +256,7 @@ state 12
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LESSTHAN expression GREATERTHAN
+    (13) expression -> . PRINT LPAREN expression RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -281,7 +284,7 @@ state 13
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LESSTHAN expression GREATERTHAN
+    (13) expression -> . PRINT LPAREN expression RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -309,7 +312,7 @@ state 14
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LESSTHAN expression GREATERTHAN
+    (13) expression -> . PRINT LPAREN expression RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -337,7 +340,7 @@ state 15
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LESSTHAN expression GREATERTHAN
+    (13) expression -> . PRINT LPAREN expression RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -365,7 +368,7 @@ state 16
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LESSTHAN expression GREATERTHAN
+    (13) expression -> . PRINT LPAREN expression RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -393,7 +396,7 @@ state 17
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LESSTHAN expression GREATERTHAN
+    (13) expression -> . PRINT LPAREN expression RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -421,7 +424,7 @@ state 18
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LESSTHAN expression GREATERTHAN
+    (13) expression -> . PRINT LPAREN expression RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -436,7 +439,7 @@ state 18
 
 state 19
 
-    (13) expression -> PRINT LESSTHAN . expression GREATERTHAN
+    (13) expression -> PRINT LPAREN . expression RPAREN
     (1) expression -> . NUMBER
     (2) expression -> . expression PLUS expression
     (3) expression -> . expression MINUS expression
@@ -449,7 +452,7 @@ state 19
     (10) expression -> . TANGENT LPAREN expression RPAREN
     (11) expression -> . PI
     (12) expression -> . FUNC_CALL
-    (13) expression -> . PRINT LESSTHAN expression GREATERTHAN
+    (13) expression -> . PRINT LPAREN expression RPAREN
 
     NUMBER          shift and go to state 2
     SQUAREROOT      shift and go to state 3
@@ -478,7 +481,6 @@ state 20
   ! shift/reduce conflict for POWER resolved as shift
     $end            reduce using rule 2 (expression -> expression PLUS expression .)
     RPAREN          reduce using rule 2 (expression -> expression PLUS expression .)
-    GREATERTHAN     reduce using rule 2 (expression -> expression PLUS expression .)
     PLUS            shift and go to state 10
     MINUS           shift and go to state 11
     DIVIDE          shift and go to state 12
@@ -508,7 +510,6 @@ state 21
   ! shift/reduce conflict for POWER resolved as shift
     $end            reduce using rule 3 (expression -> expression MINUS expression .)
     RPAREN          reduce using rule 3 (expression -> expression MINUS expression .)
-    GREATERTHAN     reduce using rule 3 (expression -> expression MINUS expression .)
     PLUS            shift and go to state 10
     MINUS           shift and go to state 11
     DIVIDE          shift and go to state 12
@@ -538,7 +539,6 @@ state 22
   ! shift/reduce conflict for POWER resolved as shift
     $end            reduce using rule 4 (expression -> expression DIVIDE expression .)
     RPAREN          reduce using rule 4 (expression -> expression DIVIDE expression .)
-    GREATERTHAN     reduce using rule 4 (expression -> expression DIVIDE expression .)
     PLUS            shift and go to state 10
     MINUS           shift and go to state 11
     DIVIDE          shift and go to state 12
@@ -568,7 +568,6 @@ state 23
   ! shift/reduce conflict for POWER resolved as shift
     $end            reduce using rule 5 (expression -> expression MULTIPLY expression .)
     RPAREN          reduce using rule 5 (expression -> expression MULTIPLY expression .)
-    GREATERTHAN     reduce using rule 5 (expression -> expression MULTIPLY expression .)
     PLUS            shift and go to state 10
     MINUS           shift and go to state 11
     DIVIDE          shift and go to state 12
@@ -598,7 +597,6 @@ state 24
   ! shift/reduce conflict for POWER resolved as shift
     $end            reduce using rule 7 (expression -> expression POWER expression .)
     RPAREN          reduce using rule 7 (expression -> expression POWER expression .)
-    GREATERTHAN     reduce using rule 7 (expression -> expression POWER expression .)
     PLUS            shift and go to state 10
     MINUS           shift and go to state 11
     DIVIDE          shift and go to state 12
@@ -682,14 +680,14 @@ state 28
 
 state 29
 
-    (13) expression -> PRINT LESSTHAN expression . GREATERTHAN
+    (13) expression -> PRINT LPAREN expression . RPAREN
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . DIVIDE expression
     (5) expression -> expression . MULTIPLY expression
     (7) expression -> expression . POWER expression
 
-    GREATERTHAN     shift and go to state 34
+    RPAREN          shift and go to state 34
     PLUS            shift and go to state 10
     MINUS           shift and go to state 11
     DIVIDE          shift and go to state 12
@@ -708,7 +706,6 @@ state 30
     POWER           reduce using rule 6 (expression -> SQUAREROOT LPAREN expression RPAREN .)
     $end            reduce using rule 6 (expression -> SQUAREROOT LPAREN expression RPAREN .)
     RPAREN          reduce using rule 6 (expression -> SQUAREROOT LPAREN expression RPAREN .)
-    GREATERTHAN     reduce using rule 6 (expression -> SQUAREROOT LPAREN expression RPAREN .)
 
 
 state 31
@@ -722,7 +719,6 @@ state 31
     POWER           reduce using rule 8 (expression -> SINE LPAREN expression RPAREN .)
     $end            reduce using rule 8 (expression -> SINE LPAREN expression RPAREN .)
     RPAREN          reduce using rule 8 (expression -> SINE LPAREN expression RPAREN .)
-    GREATERTHAN     reduce using rule 8 (expression -> SINE LPAREN expression RPAREN .)
 
 
 state 32
@@ -736,7 +732,6 @@ state 32
     POWER           reduce using rule 9 (expression -> COSINE LPAREN expression RPAREN .)
     $end            reduce using rule 9 (expression -> COSINE LPAREN expression RPAREN .)
     RPAREN          reduce using rule 9 (expression -> COSINE LPAREN expression RPAREN .)
-    GREATERTHAN     reduce using rule 9 (expression -> COSINE LPAREN expression RPAREN .)
 
 
 state 33
@@ -750,21 +745,19 @@ state 33
     POWER           reduce using rule 10 (expression -> TANGENT LPAREN expression RPAREN .)
     $end            reduce using rule 10 (expression -> TANGENT LPAREN expression RPAREN .)
     RPAREN          reduce using rule 10 (expression -> TANGENT LPAREN expression RPAREN .)
-    GREATERTHAN     reduce using rule 10 (expression -> TANGENT LPAREN expression RPAREN .)
 
 
 state 34
 
-    (13) expression -> PRINT LESSTHAN expression GREATERTHAN .
+    (13) expression -> PRINT LPAREN expression RPAREN .
 
-    PLUS            reduce using rule 13 (expression -> PRINT LESSTHAN expression GREATERTHAN .)
-    MINUS           reduce using rule 13 (expression -> PRINT LESSTHAN expression GREATERTHAN .)
-    DIVIDE          reduce using rule 13 (expression -> PRINT LESSTHAN expression GREATERTHAN .)
-    MULTIPLY        reduce using rule 13 (expression -> PRINT LESSTHAN expression GREATERTHAN .)
-    POWER           reduce using rule 13 (expression -> PRINT LESSTHAN expression GREATERTHAN .)
-    $end            reduce using rule 13 (expression -> PRINT LESSTHAN expression GREATERTHAN .)
-    RPAREN          reduce using rule 13 (expression -> PRINT LESSTHAN expression GREATERTHAN .)
-    GREATERTHAN     reduce using rule 13 (expression -> PRINT LESSTHAN expression GREATERTHAN .)
+    PLUS            reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
+    MINUS           reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
+    MULTIPLY        reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
+    POWER           reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
+    $end            reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 13 (expression -> PRINT LPAREN expression RPAREN .)
 
 WARNING: 
 WARNING: Conflicts:

@@ -1,5 +1,5 @@
-from BrittainScriptInternals.lexer import *
-from BrittainScriptInternals.parser import *
+import lexer
+import parser
 
 #def detect_characters(data):
     #math_operators = {'+', '-','*','/'} # add more when i add more
