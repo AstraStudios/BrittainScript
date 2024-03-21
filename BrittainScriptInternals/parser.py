@@ -116,14 +116,14 @@ def p_expression_print(p):
     #p[0] = evaluate_expression(p[1])
     #p[0] = p[3]
 
-def p_expression_name(p):
-    'expression : NAME'
-    p[0] = variables[p[1]]
+#def p_expression_name(p):
+    #'expression : NAME'
+    #p[0] = variables[p[1]]
 
-def p_assignment(p):
-    'expression : NAME EQUALS expression'
-    print("Assigned variable ", p[1], "to ", p[3])
-    variables[p[1]] = p[3]
+#def p_assignment(p):
+    #'expression : NAME EQUALS expression'
+    #print("Assigned variable ", p[1], "to ", p[3])
+    #variables[p[1]] = p[3]
 
 # Define a function to evaluate expressions, replacing variable names with their values
 #def evaluate_expression(expr):
@@ -146,4 +146,4 @@ while True:
     print(tok)
 result = parser.parse(input_text)
 print(result)
-print(variables)
+#print(variables)

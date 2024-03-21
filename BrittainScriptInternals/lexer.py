@@ -11,8 +11,8 @@ tokens = (
     'MINUS',
     'DIVIDE',
     'MULTIPLY',
-    'EQUALS'
-,    # algebra
+    'EQUALS',
+    # algebra
     #'ID', # basically math variables
     'SQUAREROOT',
     'POWER',
@@ -39,14 +39,14 @@ tokens = (
     # text things
     'FUNC_CALL',
     #'STRING',
-    'NAME'
+    #'NAME'
 )
 
 t_PLUS = r'\+'
 t_MINUS = r'\-'
 t_DIVIDE = r'\/'
 t_MULTIPLY = r'\*'
-t_EQUALS = r'\='
+#t_EQUALS = r'\='
 # assign
 t_SQUAREROOT = r'sqrroot'
 t_POWER = r'\^'
@@ -117,10 +117,10 @@ def t_newline(t):
     #t.value = t.value[1:-1]
     #return t
 
-def t_NAME(t):
-    r"[a-zA-Z]+\w*"
-    print("Name:", t.value)
-    return t
+#def t_NAME(t):
+    #r"[a-zA-Z]+\w*"
+    #print("Name:", t.value)
+    #return t
 
 t_ignore = ' \t'
 
