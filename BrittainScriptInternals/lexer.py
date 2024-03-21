@@ -30,15 +30,15 @@ tokens = (
     'RPAREN',
     # functions
     'PRINT',
-    'IF',
-    'ELSEIF',
-    'WHILE',
-    'FOR',
-    'FUNC',
-    'ASSIGN',
+    #'IF',
+    #'ELSEIF',
+    #'WHILE',
+    #'FOR',
+    #'FUNC',
+    #'ASSIGN',
     # text things
     'FUNC_CALL',
-    'STRING',
+    #'STRING',
     'NAME'
 )
 
@@ -60,11 +60,11 @@ t_PI = r'pi'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_PRINT = r'push'
-t_IF = r'cond'
-t_ELSEIF = r'elsecond'
-t_WHILE = r'while'
-t_FOR = r'dur' #duration
-t_FUNC = r'func'
+#t_IF = r'cond'
+#t_ELSEIF = r'elsecond'
+#t_WHILE = r'while'
+#t_FOR = r'dur' #duration
+#t_FUNC = r'func'
 
 # regular base action
 def t_NUMBER(t):

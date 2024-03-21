@@ -121,7 +121,7 @@ def p_expression_name(p):
     p[0] = variables[p[1]]
 
 def p_assignment(p):
-    'assignment : NAME EQUALS expression'
+    'expression : NAME EQUALS expression'
     print("Assigned variable ", p[1], "to ", p[3])
     variables[p[1]] = p[3]
 
