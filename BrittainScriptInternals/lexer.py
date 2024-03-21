@@ -11,7 +11,8 @@ tokens = (
     'MINUS',
     'DIVIDE',
     'MULTIPLY',
-    # algebra
+    'EQUALS'
+,    # algebra
     #'ID', # basically math variables
     'SQUAREROOT',
     'POWER',
@@ -35,15 +36,16 @@ tokens = (
     'FOR',
     'FUNC',
     'ASSIGN',
-    # func call
+    # text things
     'FUNC_CALL',
-    'STRING'
+    'STRING',
 )
 
 t_PLUS = r'\+'
 t_MINUS = r'\-'
 t_DIVIDE = r'\/'
 t_MULTIPLY = r'\*'
+t_EQUALS = r'\='
 # assign
 t_SQUAREROOT = r'sqrroot'
 t_POWER = r'\^'
