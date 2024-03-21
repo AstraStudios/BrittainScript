@@ -7,7 +7,6 @@ Unused terminals:
     FOR
     FUNC
     IF
-    STRING
     WHILE
 
 Grammar
@@ -26,6 +25,9 @@ Rule 10    expression -> TANGENT LPAREN expression RPAREN
 Rule 11    expression -> PI
 Rule 12    expression -> FUNC_CALL
 Rule 13    expression -> PRINT LPAREN expression RPAREN
+Rule 14    statement -> assignment
+Rule 15    statement -> expression
+Rule 16    assignment -> STRING EQUALS expression
 
 Terminals, with rules where they appear
 
@@ -33,6 +35,7 @@ ASSIGN               :
 COSINE               : 9
 DIVIDE               : 4
 ELSEIF               : 
+EQUALS               : 16
 FOR                  : 
 FUNC                 : 
 FUNC_CALL            : 12
@@ -48,14 +51,16 @@ PRINT                : 13
 RPAREN               : 6 8 9 10 13
 SINE                 : 8
 SQUAREROOT           : 6
-STRING               : 
+STRING               : 16
 TANGENT              : 10
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 2 2 3 3 4 4 5 5 6 7 7 8 9 10 13 0
+assignment           : 14
+expression           : 2 2 3 3 4 4 5 5 6 7 7 8 9 10 13 15 16 0
+statement            : 
 
 Parsing method: LALR
 
