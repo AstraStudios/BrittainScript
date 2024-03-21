@@ -38,7 +38,7 @@ tokens = (
     #'ASSIGN',
     # text things
     'FUNC_CALL',
-    #'STRING',
+    'STRING',
     #'NAME'
 )
 
@@ -112,10 +112,10 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-#def t_STRING(t):
-    #r'"[^"]*"'
-    #t.value = t.value[1:-1]
-    #return t
+def t_STRING(t):
+    r'"[^"]*"'
+    t.value = t.value[1:-1]
+    return t
 
 #def t_NAME(t):
     #r"[a-zA-Z]+\w*"
