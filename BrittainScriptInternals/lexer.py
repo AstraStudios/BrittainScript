@@ -39,6 +39,7 @@ tokens = (
     # text things
     'FUNC_CALL',
     'STRING',
+    'NAME'
 )
 
 t_PLUS = r'\+'
@@ -64,7 +65,6 @@ t_ELSEIF = r'elsecond'
 t_WHILE = r'while'
 t_FOR = r'dur' #duration
 t_FUNC = r'func'
-t_ASSIGN = r'[<>]'
 
 # regular base action
 def t_NUMBER(t):
@@ -112,9 +112,14 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-def t_STRING(t):
-    r'"[^"]*"'
-    t.value = t.value[1:-1]
+#def t_STRING(t):
+    #r'"[^"]*"'
+    #t.value = t.value[1:-1]
+    #return t
+
+def t_NAME(t):
+    r"[a-zA-Z]+\w*"
+    print("Name:", t.value)
     return t
 
 t_ignore = ' \t'

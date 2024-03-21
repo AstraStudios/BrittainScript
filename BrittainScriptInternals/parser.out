@@ -7,6 +7,7 @@ Unused terminals:
     FOR
     FUNC
     IF
+    STRING
     WHILE
 
 Grammar
@@ -27,7 +28,7 @@ Rule 12    expression -> FUNC_CALL
 Rule 13    expression -> PRINT LPAREN expression RPAREN
 Rule 14    statement -> assignment
 Rule 15    statement -> expression
-Rule 16    assignment -> STRING EQUALS expression
+Rule 16    assignment -> NAME EQUALS expression
 
 Terminals, with rules where they appear
 
@@ -43,6 +44,7 @@ IF                   :
 LPAREN               : 6 8 9 10 13
 MINUS                : 3
 MULTIPLY             : 5
+NAME                 : 16
 NUMBER               : 1
 PI                   : 11
 PLUS                 : 2
@@ -51,7 +53,7 @@ PRINT                : 13
 RPAREN               : 6 8 9 10 13
 SINE                 : 8
 SQUAREROOT           : 6
-STRING               : 16
+STRING               : 
 TANGENT              : 10
 WHILE                : 
 error                : 

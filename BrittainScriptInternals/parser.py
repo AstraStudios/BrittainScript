@@ -3,7 +3,7 @@ import lexer as lexer
 from lexer import tokens
 import math as math
 
-symbol_table = []
+variables = {}
 
 # basic function for everything thats complex
 #arg = p[3]
@@ -107,34 +107,37 @@ def p_expression_print(p):
     'expression : PRINT LPAREN expression RPAREN'
     p[0] = p[3]
 
-def p_statement_assignment(p):
-    'statement : assignment'
-    pass
+#def p_statement_assignment(p):
+    #'statement : assignment'
+    #pass
 
-def p_statement_expression(p):
-    'statement : expression'
-    p[0] = evaluate_expression(p[1])
+#def p_statement_expression(p):
+    #'statement : expression'
+    #p[0] = evaluate_expression(p[1])
+    #p[0] = p[3]
+
+def p_expression_name(p):
+    'expression : NAME'
+    p[0] = variables[p[1]]
 
 def p_assignment(p):
-    'assignment : STRING EQUALS expression'
-    var_name = p[1]
-    value = p[3]
+    'assignment : NAME EQUALS expression'
     print("Assigned variable ", p[1], "to ", p[3])
-    symbol_table[var_name] = value
+    variables[p[1]] = p[3]
 
 # Define a function to evaluate expressions, replacing variable names with their values
-def evaluate_expression(expr):
-    if isinstance(expr, str) and expr in symbol_table:
-        return symbol_table[expr]  # If the expression is a variable, return its value
-    else:
-        return expr  # Otherwise, return the expression unchanged
+#def evaluate_expression(expr):
+    #if isinstance(expr, str) and expr in variables:
+        #return variables[expr]  # If the expression is a variable, return its value
+    #else:
+        #return expr  # Otherwise, return the expression unchanged
 
 def p_error(p):
     print("Error in input")
 
 parser = yacc.yacc()
 
-input_text = input("test: ")
+input_text = input("Test: ")
 lexer.lexer.input(input_text)
 while True:
     tok = lexer.lexer.token()
@@ -143,4 +146,4 @@ while True:
     print(tok)
 result = parser.parse(input_text)
 print(result)
-print(symbol_table)
+print(variables)
